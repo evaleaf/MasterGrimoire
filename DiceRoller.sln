@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiceRoller.Library", "DiceRoller.Library\DiceRoller.Library.csproj", "{AE9F23E8-B06A-4DE8-9C34-FCE2390BA026}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiceRoller.Tests", "DiceRoller.Tests\DiceRoller.Tests.csproj", "{B0A31F97-8426-495B-A19F-FA648EA1538E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE9F23E8-B06A-4DE8-9C34-FCE2390BA026}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE9F23E8-B06A-4DE8-9C34-FCE2390BA026}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE9F23E8-B06A-4DE8-9C34-FCE2390BA026}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE9F23E8-B06A-4DE8-9C34-FCE2390BA026}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0A31F97-8426-495B-A19F-FA648EA1538E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0A31F97-8426-495B-A19F-FA648EA1538E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0A31F97-8426-495B-A19F-FA648EA1538E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0A31F97-8426-495B-A19F-FA648EA1538E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
