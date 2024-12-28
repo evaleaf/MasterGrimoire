@@ -3,46 +3,49 @@ using DiceRoller.Library.Models;
 
 namespace DiceRoller.Library.Implementations;
 
-public class DiceRoller : IDiceRoller
+public class DiceRoller : IDiceRoller<IDiceExpression>
 {
     Random randomizer;
-        public DiceManager(){
+        public DiceRoller(){
             randomizer = new Random();
         }
 
-        public DiceManager(int seed){
+        public DiceRoller(int seed){
             randomizer = new Random(seed);
         }
 
-        public (int result, List<int> listOfResult) Roll(string expressionString)
+        public DiceExpressionResult Roll(int faces)
         {
+            return Roll(new DiceExpression(1, faces));
+        }
+
+        public DiceExpressionResult Roll(int rollNumbers, int faces)
+        {
+            
+            return Roll(new DiceExpression(rollNumbers, faces));
+        }
+
+        public DiceExpressionResult Roll(string expressionString)
+        {
+            // Default parse
             return Roll(DiceExpression.Parse(expressionString));
         }
 
-        public (int result, List<int> listOfResult) Roll(DiceExpression expression){
-            var res = 0;
+        public DiceExpressionResult Roll(DiceExpression expression){
             List<int> listOfResult = new List<int>();
             foreach (var faceDice in expression.Dices){
-                for (var indexRollForDice = 0; indexRollForDice < Math.Abs(faceDice.NumberOfDices); indexRollForDice++){
-                    var resOfThisRoll = (randomizer.Next(Math.Abs(faceDice.DiceFaces) - 1) + 1) * (faceDice.NumberOfDices < 0 ? -1 : 1);
-                    res += Math.Sign(faceDice.DiceFaces) * resOfThisRoll;
+                for (var indexRollForDice = 0; indexRollForDice < Math.Abs(faceDice.Quantity); indexRollForDice++){
+                    var resOfThisRoll = (randomizer.Next(Math.Abs(faceDice.DiceFaces) - 1) + 1) * (faceDice.Quantity < 0 ? -1 : 1);
                     listOfResult.Add(Math.Sign(faceDice.DiceFaces) *resOfThisRoll);
                 }
             }
-            return (res, listOfResult);
+            return new DiceExpressionResult(listOfResult);
         }
 
-    public DiceResult Roll(int faces)
-    {
-        return new DiceExpression(1, faces);
-    }
 
-    public DiceResult Roll(int rollNumbers, int faces)
-    {
-        throw new NotImplementedException();
-    }
 
-    public DiceResult Roll(IDiceExpression expr)
+
+    public DiceExpressionResult Roll(IDiceExpression expr)
     {
         throw new NotImplementedException();
     }
