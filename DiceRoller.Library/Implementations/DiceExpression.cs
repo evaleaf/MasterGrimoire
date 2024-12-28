@@ -45,27 +45,20 @@ public class DiceExpression : IDiceExpression
 
     public DiceExpression(int numberOfDices, int diceFaces) : this()
     {
-        if (diceFaces == 0)
-        {
-            throw new ArgumentException("Dice faces cannot be zero.");
+        if (numberOfDices * diceFaces == 0){
+
         }
-        if (numberOfDices <= 0)
-        {
-            throw new ArgumentException("Dice count cannot be zero or lower.");
+        else if (numberOfDices * diceFaces < 0){
+            Add(- Math.Abs(numberOfDices), Math.Abs(diceFaces));
         }
-        Add(numberOfDices, diceFaces);
+        else {
+            Add(Math.Abs(numberOfDices), Math.Abs(diceFaces));
+        }
+        
     }
 
     public void Add(int number, int diceFaces)
     {
-        if (diceFaces == 0)
-        {
-            throw new ArgumentException("Dice faces cannot be zero.");
-        }
-        if (number <= 0)
-        {
-            throw new ArgumentException("Dice count cannot be zero or lower.");
-        }
         Dices.Add(new AtomDiceExpression() { DiceFaces = diceFaces, Quantity = number });
     }
 
