@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MasterGrimoire.Library\MasterGrimoire.Library.csproj" />
+    <ProjectReference Include="..\MasterGrimoire.Library\MasterGrimoire.DiceLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
