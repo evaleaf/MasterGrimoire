@@ -1,11 +1,11 @@
-﻿using MasterGrimoire.Library.Implementations;
+﻿using MasterGrimoire.DiceLibrary.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MasterGrimoire.Library.Models
+namespace MasterGrimoire.DiceLibrary.Models
 {
 	public enum RolledInfo
 	{

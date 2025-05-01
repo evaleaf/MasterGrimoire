@@ -1,8 +1,8 @@
 ﻿
 using System.Net.Quic;
-using MasterGrimoire.Library.Implementations;
-using MasterGrimoire.Library.Interfaces;
-using MasterGrimoire.Library.Models;
+using MasterGrimoire.DiceLibrary.Implementations;
+using MasterGrimoire.DiceLibrary.Interfaces;
+using MasterGrimoire.DiceLibrary.Models;
 using Xunit;
 
 namespace MasterGrimoire.Tests;

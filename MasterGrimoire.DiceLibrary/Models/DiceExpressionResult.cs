@@ -1,7 +1,7 @@
-using MasterGrimoire.Library.Implementations;
+using MasterGrimoire.DiceLibrary.Implementations;
 using System.Linq.Expressions;
 
-namespace MasterGrimoire.Library.Models;
+namespace MasterGrimoire.DiceLibrary.Models;
 
 public class DiceExpressionResult
 {

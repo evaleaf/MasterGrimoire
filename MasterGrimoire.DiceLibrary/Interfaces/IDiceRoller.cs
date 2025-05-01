@@ -1,6 +1,6 @@
-using MasterGrimoire.Library.Models;
+using MasterGrimoire.DiceLibrary.Models;
 
-namespace MasterGrimoire.Library.Interfaces;
+namespace MasterGrimoire.DiceLibrary.Interfaces;
 
 public interface IDiceRoller<T> where T : IDiceExpression
 {

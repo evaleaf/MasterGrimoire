@@ -1,8 +1,8 @@
-using MasterGrimoire.Library.Implementations;
-using MasterGrimoire.Library.Models;
+using MasterGrimoire.DiceLibrary.Implementations;
+using MasterGrimoire.DiceLibrary.Models;
 using System.Runtime.CompilerServices;
 
-namespace MasterGrimoire.Library.Interfaces;
+namespace MasterGrimoire.DiceLibrary.Interfaces;
 
 public interface IDiceExpression
 {

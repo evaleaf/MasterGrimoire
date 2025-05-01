@@ -2,11 +2,11 @@ using System.Diagnostics.Metrics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Swift;
-using MasterGrimoire.Library.Interfaces;
-using MasterGrimoire.Library.Models;
-using static MasterGrimoire.Library.Models.DiceExpressionResult;
+using MasterGrimoire.DiceLibrary.Interfaces;
+using MasterGrimoire.DiceLibrary.Models;
+using static MasterGrimoire.DiceLibrary.Models.DiceExpressionResult;
 
-namespace MasterGrimoire.Library.Implementations;
+namespace MasterGrimoire.DiceLibrary.Implementations;
 
 public class DiceExpression : IDiceExpression
 {
