@@ -15,11 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="Xunit" />
+    <ProjectReference Include="..\MasterGrimoire.Library\MasterGrimoire.Library.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DiceRoller.Library\DiceRoller.Library.csproj" />
+    <Using Include="Xunit" />
   </ItemGroup>
 
 </Project>

@@ -1,1 +1,1 @@
-# dice-roller
+# master-grimoire

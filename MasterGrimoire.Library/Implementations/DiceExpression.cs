@@ -1,18 +1,21 @@
 using System.Diagnostics.Metrics;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using DiceRoller.Library.Interfaces;
-using DiceRoller.Library.Models;
+using System.Runtime.InteropServices.Swift;
+using MasterGrimoire.Library.Interfaces;
+using MasterGrimoire.Library.Models;
+using static MasterGrimoire.Library.Models.DiceExpressionResult;
 
-namespace DiceRoller.Library.Implementations;
+namespace MasterGrimoire.Library.Implementations;
 
 public class DiceExpression : IDiceExpression
 {
     private Random randomizer;
     internal List<AtomDiceExpression> Dices { get; set; } = new List<AtomDiceExpression>();
-    internal class AtomDiceExpression
-    {
-        public int DiceFaces { get; set; }
-        public int Quantity { get; set; }
+      internal class AtomDiceExpression
+      {
+		public int Quantity { get; set; }
+		public int DiceFaces { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -45,19 +48,22 @@ public class DiceExpression : IDiceExpression
 
     public DiceExpression(int numberOfDices, int diceFaces) : this()
     {
-        if (numberOfDices * diceFaces == 0){
-
-        }
-        else if (numberOfDices * diceFaces < 0){
-            Add(- Math.Abs(numberOfDices), Math.Abs(diceFaces));
-        }
-        else {
-            Add(Math.Abs(numberOfDices), Math.Abs(diceFaces));
-        }
+            if (numberOfDices * diceFaces < 0)
+            {
+                  Add(-Math.Abs(numberOfDices), Math.Abs(diceFaces));
+            }
+            else
+            {
+                  Add(Math.Abs(numberOfDices), Math.Abs(diceFaces));
+            }
         
     }
+	public DiceExpression(int numberOfDices, int diceFaces, int modifier) : this(numberOfDices, diceFaces)
+	{
+            Add(modifier);
+	}
 
-    public void Add(int number, int diceFaces)
+	public void Add(int number, int diceFaces)
     {
         Dices.Add(new AtomDiceExpression() { DiceFaces = diceFaces, Quantity = number });
     }
@@ -98,25 +104,25 @@ public class DiceExpression : IDiceExpression
         if (Dices != null & Dices.Any())
         {
             ret = string.Join("", Dices
-                .Select((e, i) =>
+                .Select((e, index) =>
                 {
                     string signPlus = string.Empty;
-                    if (e.DiceFaces < 0)
+			  if (e.DiceFaces * e.Quantity < 0)
                     {
                         signPlus = "-";
                     }
-                    else if (i != 0)
+                    else if (index != 0) // il primo non ha davanti il + se positivo
                     {
                         signPlus = "+";
                     }
 
                     if (e.DiceFaces == 1)
                     {
-                        return signPlus + e.Quantity.ToString();
+                        return signPlus + Math.Abs(e.Quantity).ToString();
                     }
                     else
                     {
-                        return signPlus + e.Quantity.ToString() + "d" + Math.Abs(e.DiceFaces).ToString();
+                        return signPlus + Math.Abs(e.Quantity).ToString() + "d" + Math.Abs(e.DiceFaces).ToString();
                     }
 
                 })
@@ -125,36 +131,12 @@ public class DiceExpression : IDiceExpression
         return ret;
     }
 
-    private static bool containsADice(string subexpre)
-    {
-        int diceFaces = 0;
-        int numFaces = 0;
-        if (subexpre.Contains('d'))
-        {
-            // dice
-            var components = subexpre.Split('d');
-            numFaces = int.Parse(components[0]);
-            diceFaces = int.Parse(components[1]);
-            return (numFaces != 0 && diceFaces > 0);
-        }
-        else
-            return false;
-    }
+      public IDiceExpression ToIDiceExpression()
+      {
+            return this;
+      }
 
-    private static (int diceFaces, int numberOfDices) parseSingleFace(string subexpre)
-    {
-        if (containsADice(subexpre))
-        {
-            var components = subexpre.Split('d');
-            int numDices = int.Parse(components[0]);
-            int diceFaces = int.Parse(components[1]);
-            return (Math.Abs(diceFaces), (Math.Sign(diceFaces)) * numDices);
-        }
-        else
-            throw new InvalidOperationException();
-    }
-
-    public static DiceExpression Parse(string DiceExpression)
+	public static DiceExpression Parse(string DiceExpression)
     {
         DiceExpression = DiceExpression.Replace(" ", string.Empty).ToLower();
         var splittedExpression = DiceExpression.Split('+');
@@ -168,16 +150,18 @@ public class DiceExpression : IDiceExpression
                 if (!string.IsNullOrEmpty(elemToAdd))
                 {
                     var isMinus = (i != 0); // only the first occurrence is with plus since the (+) split. The elements in this array are splitted using (-).
-                    if (containsADice(elemToAdd))
-                    {
-                        var dice = parseSingleFace(elemToAdd);
-                        diceExpr.Add(dice.numberOfDices, (isMinus ? -1 : 1) * dice.diceFaces);
-                    }
-                    else
-                    {
+			if (elemToAdd.Contains('d'))
+			{
+				var components = elemToAdd.Split('d');
+				int numDices = int.Parse(components[0]);
+				int diceFaces = int.Parse(string.Join("",elemToAdd.Skip(components[0].Length + 1)));
+				diceExpr.Add(new DiceExpression((isMinus ? -1 : 1) * numDices, Math.Abs(diceFaces)));
+			}
+			else
+                  {
                         var modif = int.Parse(elemToAdd);
                         diceExpr.Add((isMinus ? -1 : 1) * modif);
-                    }
+                  }
                 }
 
             }
@@ -214,13 +198,13 @@ public class DiceExpression : IDiceExpression
     }
 
     public DiceExpressionResult Roll(){
-        List<int> listOfResult = new List<int>();
+        List<SingleDiceResult> listOfResult = new List<SingleDiceResult>();
         foreach (var faceDice in this.Dices){
             for (var indexRollForDice = 0; indexRollForDice < Math.Abs(faceDice.Quantity); indexRollForDice++){
                 var resOfThisRoll = (randomizer.Next(Math.Abs(faceDice.DiceFaces) - 1) + 1) * (faceDice.Quantity < 0 ? -1 : 1);
-                listOfResult.Add(Math.Sign(faceDice.DiceFaces) *resOfThisRoll);
+                listOfResult.Add(new SingleDiceResult(Math.Sign(faceDice.DiceFaces) *resOfThisRoll, RolledInfo.Rolled));
             }
         }
-        return new DiceExpressionResult(listOfResult);
+        return new DiceExpressionResult(listOfResult, this);
     }
 }
