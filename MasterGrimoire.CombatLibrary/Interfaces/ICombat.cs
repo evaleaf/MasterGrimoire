@@ -1,4 +1,4 @@
-﻿using MasterGrimoire.CombactLibrary.Models;
+﻿using MasterGrimoire.CombatLibrary.Models;
 using MasterGrimoire.Library.Interfaces;
 using MasterGrimoire.Library.Models;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MasterGrimoire.CombactLibrary.Interfaces
+namespace MasterGrimoire.CombatLibrary.Interfaces
 {
 	internal interface ICombact : ICloneable 
 	{
