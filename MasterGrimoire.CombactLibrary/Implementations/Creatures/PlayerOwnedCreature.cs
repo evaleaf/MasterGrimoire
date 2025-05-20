@@ -1,12 +1,12 @@
-﻿using MasterGrimoire.CombactLibrary.Interfaces;
-using MasterGrimoire.CombactLibrary.Models;
+﻿using MasterGrimoire.CombatLibrary.Interfaces;
+using MasterGrimoire.CombatLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MasterGrimoire.CombactLibrary.Implementations.Creatures
+namespace MasterGrimoire.CombatLibrary.Implementations.Creatures
 {
 	public class PlayerOwnedCreature : ICreature
 	{

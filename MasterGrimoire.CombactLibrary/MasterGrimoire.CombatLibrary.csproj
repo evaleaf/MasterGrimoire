@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MasterGrimoire.Library\MasterGrimoire.DiceLibrary.csproj" />
+    <ProjectReference Include="..\MasterGrimoire.DiceLibrary\MasterGrimoire.DiceLibrary.csproj" />
   </ItemGroup>
 
 </Project>

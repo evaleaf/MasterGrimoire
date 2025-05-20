@@ -1,17 +1,16 @@
-﻿using MasterGrimoire.CombactLibrary.Models;
-using MasterGrimoire.Library.Interfaces;
-using MasterGrimoire.Library.Models;
+﻿using MasterGrimoire.CombatLibrary.Models;
+using MasterGrimoire.DiceLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MasterGrimoire.CombactLibrary.Interfaces
+namespace MasterGrimoire.CombatLibrary.Interfaces
 {
-	internal interface ICombact : ICloneable 
+	internal interface ICombat : ICloneable 
 	{
-		public string CombactName { get; }
+		public string CombatName { get; }
 		public List<ICreature> Creatures { get; }
 		public int GetCurrentTurnNumber();
 		public ICreature GetCurrentCreature();

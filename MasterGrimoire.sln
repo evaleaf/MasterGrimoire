@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterGrimoire.DiceLibrary"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterGrimoire.Tests", "MasterGrimoire.Tests\MasterGrimoire.Tests.csproj", "{B0A31F97-8426-495B-A19F-FA648EA1538E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterGrimoire.CombactLibrary", "MasterGrimoire.CombactLibrary\MasterGrimoire.CombactLibrary.csproj", "{EE819944-FCE1-4D1F-8793-BE1E8D7C9179}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterGrimoire.CombatLibrary", "MasterGrimoire.CombactLibrary\MasterGrimoire.CombatLibrary.csproj", "{EE819944-FCE1-4D1F-8793-BE1E8D7C9179}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

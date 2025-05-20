@@ -1,11 +1,11 @@
-﻿using MasterGrimoire.CombactLibrary.Models;
+﻿using MasterGrimoire.CombatLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MasterGrimoire.CombactLibrary.Interfaces
+namespace MasterGrimoire.CombatLibrary.Interfaces
 {
 	public interface ICreature: ICloneable
 	{
